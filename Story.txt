@@ -1,10 +1,3 @@
-The story starts in a small town named Raspur, where a teenage boy steals a car to sell it and earn some money. His name is Raja.
-The police gets to know about this and then they try to catch him. But Raja barely escapes after running for almost 2 days (2 mins in game).
-Then reaches another town and sells the car to a dealer for 50000. At the garage the dealer gives Raja a list of cars in demand and tells him to supply those.
-Paving the way for Raja to earn some cash by building his car theft empire.
+X - Name of the game not yet decided.
 
-For Raja to capture a car, he needs to go on a drive in his current car and hit the car to swap it and bring it back to the garage by escaping the police for 1 day (1 mins in game).
-Once he brings it to the garage the dealer pays him promised amount(10000, 15000, 25000, 40000).  But during the chase if Raja's car hits some other car there is damage and it is deducted
-from the final amount or the car is lost if hits a police unless he pays some bribe.
-
-After earning about 280000 he moves to a city and sells the cars himself to the needy, who pay him (22000, 48000, 60000, 72000). But during the chase if Raja's car hits some other car there is damage and it is deducted from the final amount or the car is lost if hits a police unless he pays some bribe.       
+Start at a small town of kota. You are a small time kid who is an orphan and has been left on the street all alone. The one thing by which you get amazed is a car. You always wanted to have your own car. One day you see some car theives trying to steal a car in your neighbourhood, you call the police but fear that it might be too late until the police arrives. 
