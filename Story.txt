@@ -1,3 +1,28 @@
 X - Name of the game not yet decided.
 
-Start at a small town of kota. You are a small time kid who is an orphan and has been left on the street all alone. The one thing by which you get amazed is a car. You always wanted to have your own car. One day you see some car theives trying to steal a car in your neighbourhood, you call the police but fear that it might be too late until the police arrives. 
+Start at a small town of kota. 
+You are a small time kid who is an orphan and has been left on the street all alone.
+The one thing by which you get amazed is a car. You always wanted to have your own car.
+One day you see some car theives trying to steal a car in your neighbourhood, you call the police but fear that it might be too late until the police arrives. 
+So you go and scream loudly, the owner wakes up and comes down.
+The theives get scared seeing people gathering.... and they flee from the scene.
+The owner was very happy with your bahaduri (bravery). 
+He decides to rent the car to you and help you get a license.
+Now you have a license and a leased car, you have to pay 50% from the profits every day to the owner.
+
+Scene (KOTA):
+
+Purpose:-
+All you have to do is go on the streets and bang cars !! For every banged car you get ($50, $100, $200).
+
+Negatives:-
+But its not that simple. Everytime you bang a car it damages your car and reduces the health of your car.
+Once you are totaled you have to pay a fine of $2000 and it increases by $1000 for every consecutive bang.
+
+Upgrades:-
+After you collect $5000 you have the option to either buy the car from your owner or open another scene(Jaipur).
+
+Finale:-
+If you buy the car the you have to collect another $5000 to open the next scene. Once you open the next scene:
+
+Scene (Jaipur):
