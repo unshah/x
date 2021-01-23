@@ -1,11 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class storeCanvas : MonoBehaviour
 {
-
     public GameObject[] cars;
     public GameObject Nem;
     public GameObject[] lockedText;
@@ -14,6 +13,10 @@ public class storeCanvas : MonoBehaviour
     public GameObject[] AS;
     //public GameObject[] carsNotAvailable;
 
+    int jreepBought;
+    int razorBought = 0;
+    int waltorBought;
+    int smutzBought;
 
     int razorsel;
     int jreepsel;
@@ -31,38 +34,30 @@ public class storeCanvas : MonoBehaviour
     int walterUHS = 300;
     int smutzUHS = 500;
 
-
-    
-
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.SetInt("jb", 0);
-
-
         int HS = PlayerPrefs.GetInt("Player Score");
 
-        if (HS >= jreepUHS && PlayerPrefs.GetInt("jb") == 0)
+        PlayerPrefs.GetInt("razorBought");
+
+        /*if (HS >= jreepUHS && PlayerPrefs.GetInt("jreepBought") == 0)
             {
                 lockedText[0].SetActive(false);
-                buyButton[0].SetActive(true);
-            
+                buyButton[0].SetActive(true);   
         }
 
-        else if (HS >= walterUHS && PlayerPrefs.GetInt("wb") == 0)
+        else if (HS >= walterUHS && PlayerPrefs.GetInt("waltorBought") == 0)
             {
                 lockedText[1].SetActive(false);
                 buyButton[1].SetActive(true);
-
-            
         }
 
-        else if (HS >= smutzUHS && PlayerPrefs.GetInt("sb") == 0)
+        else if (HS >= smutzUHS && PlayerPrefs.GetInt("smutzBought") == 0)
             {
                 lockedText[2].SetActive(false);
                 buyButton[2].SetActive(true);
-            
-        }
+        }*/
         
     }
 
@@ -104,34 +99,32 @@ public class storeCanvas : MonoBehaviour
     public void buyCarRazor ()
     {
         int coins = PlayerPrefs.GetInt("Player Money");
-        if (coins > razorPrice && PlayerPrefs.GetInt("razorsel") == 0)
+        if (coins > razorPrice)
         {
             coins = coins - razorPrice;
             PlayerPrefs.SetInt("Player Money", coins);
             buyButton[0].SetActive(false);
             selectButton[0].SetActive(true);
-
-            PlayerPrefs.SetInt("rb", 1);
+            PlayerPrefs.SetInt("razorsel", 0);
+            PlayerPrefs.SetInt("razorBought", 1);
         }
         else
         {
             Nem.SetActive(true);
-        }
-        
+        }    
     }
 
     public void buyCarJreep()
     {
         int coins = PlayerPrefs.GetInt("Player Money");
-        if (coins > jreepPrice && PlayerPrefs.GetInt("jreepsel") == 0)
+        if (coins > jreepPrice && PlayerPrefs.GetInt("jreepBought") == 0)
         {
             coins = coins - jreepPrice;
             PlayerPrefs.SetInt("Player Money", coins);
             buyButton[1].SetActive(false);
             selectButton[1].SetActive(true);
-
-            PlayerPrefs.SetInt("jb", 1);
-
+            PlayerPrefs.SetInt("jreepsel", 0);
+            PlayerPrefs.SetInt("jreepBought", 1);
         }
         else
         {
@@ -143,14 +136,14 @@ public class storeCanvas : MonoBehaviour
     public void buyCarWalter()
     {
         int coins = PlayerPrefs.GetInt("Player Money");
-        if (coins > walterPrice && PlayerPrefs.GetInt("waltersel")==0)
+        if (coins > walterPrice && PlayerPrefs.GetInt("walterBought")==0)
         {
             coins = coins - walterPrice;
             PlayerPrefs.SetInt("Player Money", coins);
             buyButton[2].SetActive(false);
             selectButton[2].SetActive(true);
-
-            PlayerPrefs.SetInt("wb", 1);
+            PlayerPrefs.SetInt("waltersel", 0);
+            PlayerPrefs.SetInt("walterBought", 1);
 
         }
         else
@@ -163,15 +156,14 @@ public class storeCanvas : MonoBehaviour
     public void buyCarSmutz()
     {
         int coins = PlayerPrefs.GetInt("Player Money");
-        if (coins > smutzPrice && PlayerPrefs.GetInt("smutzsel") == 0)
+        if (coins > smutzPrice && PlayerPrefs.GetInt("smutzBought") == 0)
         {
             coins = coins - smutzPrice;
             PlayerPrefs.SetInt("Player Money", coins);
             buyButton[3].SetActive(false);
             selectButton[3].SetActive(true);
-
-            PlayerPrefs.SetInt("sb", 1);
-
+            PlayerPrefs.SetInt("smutzsel", 0);
+            PlayerPrefs.SetInt("smutzBought", 1);
         }
         else
         {
@@ -181,87 +173,131 @@ public class storeCanvas : MonoBehaviour
     }
     public void selectRazor()
     {
-        if (PlayerPrefs.GetInt("razorsel") == 0)
+        if (PlayerPrefs.GetInt("razorsel") >=0)
         {
             selectButton[0].SetActive(false);
+            buyButton[0].SetActive(false);
             PlayerPrefs.SetInt("carNumber", 0);
+            GameObject.Find("Player").GetComponent<PlayerCar>().playerCars[1].SetActive(true);
             AS[0].SetActive(true);
             PlayerPrefs.SetInt("razorsel", 1);
+            PlayerPrefs.SetInt("jreepsel", 0);
+            PlayerPrefs.SetInt("waltersel", 0);
 
-            AS[1].SetActive(false);
-            selectButton[1].SetActive(true);
+            if (PlayerPrefs.GetInt("jreepBought") == 1)
+            {
+                AS[1].SetActive(false);
+                selectButton[1].SetActive(true);
+            }
 
-            AS[2].SetActive(false);
-            selectButton[2].SetActive(true);
-
-            AS[3].SetActive(false);
-            selectButton[3].SetActive(true);
+            if (PlayerPrefs.GetInt("walterBought") == 1)
+            {
+                AS[2].SetActive(false);
+                selectButton[2].SetActive(true);
+            }
+                
+            if (PlayerPrefs.GetInt("smutzBought") == 1)
+            {
+                AS[3].SetActive(false);
+                selectButton[3].SetActive(true);
+            }
+               
         }
 
     }
 
     public void selectJreep()
     {
-        if (PlayerPrefs.GetInt("jreepsel") == 0)
+        if (PlayerPrefs.GetInt("jreepsel") >= 0)
         {
 
             selectButton[1].SetActive(false);
+            buyButton[1].SetActive(false);
             PlayerPrefs.SetInt("carNumber", 1);
-            PlayerPrefs.SetInt("jreepsel", 1);
+            PlayerPrefs.SetInt("jreepsel", 2);
+            PlayerPrefs.SetInt("razorsel", 1);
+            PlayerPrefs.SetInt("waltersel", 1);
             AS[1].SetActive(true);
 
-            AS[0].SetActive(false);
-            selectButton[0].SetActive(true);
+            if (PlayerPrefs.GetInt("razorBought") == 1)
+            {
+                AS[0].SetActive(false);
+                selectButton[0].SetActive(true);
+            }
 
-            AS[2].SetActive(false);
-            selectButton[2].SetActive(true);
+            if (PlayerPrefs.GetInt("walterBought") == 1)
+            {
+                AS[2].SetActive(false);
+                selectButton[2].SetActive(true);
+            }
 
-            AS[3].SetActive(false);
-            selectButton[3].SetActive(true);
+            if (PlayerPrefs.GetInt("smutzBought") == 1)
+            {
+                AS[3].SetActive(false);
+                selectButton[3].SetActive(true);
+            }
         }
 
     }
 
     public void selectWalter()
     {
-        if (PlayerPrefs.GetInt("waltersel") == 0)
+        if (PlayerPrefs.GetInt("waltersel") >= 0)
         {
-
             selectButton[2].SetActive(false);
+            buyButton[2].SetActive(false);
             PlayerPrefs.SetInt("carNumber", 2);
             PlayerPrefs.SetInt("waltersel", 1);
             AS[2].SetActive(true);
 
-            AS[1].SetActive(false);
-            selectButton[1].SetActive(true);
+            if (PlayerPrefs.GetInt("jreepBought") == 1)
+            {
+                AS[1].SetActive(false);
+                selectButton[1].SetActive(true);
+            }
 
-            AS[0].SetActive(false);
-            selectButton[0].SetActive(true);
+            if (PlayerPrefs.GetInt("razorBought") == 1)
+            {
+                AS[0].SetActive(false);
+                selectButton[0].SetActive(true);
+            }
 
-            AS[3].SetActive(false);
-            selectButton[3].SetActive(true);
+            if (PlayerPrefs.GetInt("smutzBought") == 1)
+            {
+                AS[3].SetActive(false);
+                selectButton[3].SetActive(true);
+            }
         }
 
     }
 
     public void selectSmutz()
     {
-        if (PlayerPrefs.GetInt("jreepsel") == 0)
+        if (PlayerPrefs.GetInt("jreepsel") >= 0)
         {
-
+            buyButton[3].SetActive(false);
             selectButton[3].SetActive(false);
             PlayerPrefs.SetInt("carNumber", 3);
             PlayerPrefs.SetInt("smutzsel", 1);
             AS[3].SetActive(true);
 
-            AS[1].SetActive(false);
-            selectButton[1].SetActive(true);
+            if (PlayerPrefs.GetInt("jreepBought") == 1)
+            {
+                AS[1].SetActive(false);
+                selectButton[1].SetActive(true);
+            }
 
-            AS[2].SetActive(false);
-            selectButton[2].SetActive(true);
+            if (PlayerPrefs.GetInt("walterBought") == 1)
+            {
+                AS[2].SetActive(false);
+                selectButton[2].SetActive(true);
+            }
 
-            AS[0].SetActive(false);
-            selectButton[0].SetActive(true);
+            if (PlayerPrefs.GetInt("razorBought") == 1)
+            {
+                AS[0].SetActive(false);
+                selectButton[0].SetActive(true);
+            }
         }
 
     }
