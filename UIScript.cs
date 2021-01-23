@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +14,9 @@ public class UIScript : MonoBehaviour
 
     public GameObject GameOver;
     public GameObject GamePause;
+    public GameObject FuelOver;
+    public GameObject Left;
+    public GameObject Right;
 
     public Text scoreText;
     public Text goScore;
@@ -58,7 +61,6 @@ public class UIScript : MonoBehaviour
         }
 
     }
-
     public class pauseButton 
         {
             void onPause()
@@ -75,16 +77,32 @@ public class UIScript : MonoBehaviour
         }
 
         GameObject.Find("Player").GetComponent<PlayerCar>().player.SetActive(false);
+        Left.SetActive(false);
+        Right.SetActive(false);
         GameOver.SetActive(true);
-       
 
         gcoins += levelCoin;
-
-        PlayerPrefs.SetInt("Player Money", gcoins); 
-        
+  
+        PlayerPrefs.SetInt("Player Money", gcoins);
         Time.timeScale = 0;
-       
+    }
 
+    public void fuelOver()
+    {
+        if (gameScore > PlayerPrefs.GetInt("Player Score"))
+        {
+            PlayerPrefs.SetInt("Player Score", gameScore);
+        }
+
+        GameObject.Find("Player").GetComponent<PlayerCar>().player.SetActive(false);
+        Left.SetActive(false);
+        Right.SetActive(false);
+        FuelOver.SetActive(true);
+        
+        gcoins += levelCoin;
+
+        PlayerPrefs.SetInt("Player Money", gcoins);
+        Time.timeScale = 0;
     }
 
     public void pause()
