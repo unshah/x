@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -106,10 +106,10 @@ public class PlayerCar : MonoBehaviour
         }
         fuel -= .001f;
 
-        if (fuel == 0)
+        if (fuel < 0.01)
         {
             Time.timeScale = 0;
-            GameObject.Find("Canvas").GetComponent<UIScript>().gameOver();
+            GameObject.Find("Canvas").GetComponent<UIScript>().fuelOver();
         }
              
     }
@@ -190,8 +190,9 @@ public class PlayerCar : MonoBehaviour
         else if (collision.gameObject.tag == "Fuel")
         {
             GameObject.Find("AI Spawn").GetComponent<EnemySpawn>().fuelTankEmpty = false;
-            fuel += .8f;
+            fuel += .95f;
             Destroy(collision.gameObject);
+            GameObject.Find("AI Spawn").GetComponent<EnemySpawn>().fuelSpawned = false;
         }
 
         else if (collision.gameObject.tag == "boost")
@@ -204,9 +205,4 @@ public class PlayerCar : MonoBehaviour
     {
        // gameMoney += PlayerPrefs.GetInt("Player_Money") ;
     }
-
-    
-   
-        
-    
 }
