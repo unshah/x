@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +9,7 @@ public class EnemySpawn : MonoBehaviour
     public GameObject Coin;
     public GameObject Fuel;
     public bool fuelTankEmpty = false;
+    public bool fuelSpawned = false;
 
     float timer;
     float fuelTimer;
@@ -46,8 +47,9 @@ public class EnemySpawn : MonoBehaviour
                 timer = delayTimer;
             }
 
-            if (GameObject.Find("Player").GetComponent<PlayerCar>().fuel < 0.2 && fuelTankEmpty == false)
+            if (GameObject.Find("Player").GetComponent<PlayerCar>().fuel < 0.2 && fuelTankEmpty == false && fuelSpawned == false)
             {
+                fuelSpawned = true;
                 Vector3 CoinPos = new Vector3(Random.Range(-2.50f, 2.5f), transform.position.y, transform.position.z);
                 Instantiate(Fuel, CoinPos, transform.rotation);
                 fuelTankEmpty = true;
